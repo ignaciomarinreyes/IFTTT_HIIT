@@ -4,30 +4,32 @@ import java.util.Random;
 
 public class Person extends Thread {
 
+    private String name;
     private int heartRate;
     private Random r;
-    private int speed;
+    private STATUS status;
 
-    public Person() {
+    public Person(String name) {
+        this.name = name;
         this.heartRate = 75;
         r = new Random();
-        speed = 1;
+        this.status = STATUS.STOPPED;
     }
 
     @Override
     public void run() {
         while (true) {
-            switch (speed) {
-                case 1:
+            switch (status) {
+                case STOPPED:
                     simulateHeartRate(70, 80);
                     break;
-                case 2:
+                case RUNNING:
                     simulateHeartRate(100, 120);
                     break;
-                case 3:
+                case RUNNING_FAST:
                     simulateHeartRate(140, 160);
                     break;
-                case 4:
+                case RUNNING_VERY_FAST:
                     simulateHeartRate(180, 200);
                     break;
             }
@@ -57,25 +59,29 @@ public class Person extends Thread {
         return heartRate;
     }
 
+    public enum STATUS {
+        STOPPED, RUNNING, RUNNING_FAST, RUNNING_VERY_FAST
+    }
+
     public String getStatus() {
-        switch (speed) {
-            case 1:
+        switch (status) {
+            case STOPPED:
                 return "Stopped";
-            case 2:
+            case RUNNING:
                 return "Running";
-            case 3:
+            case RUNNING_FAST:
                 return "Running fast";
-            case 4:
+            case RUNNING_VERY_FAST:
                 return "Running very fast";
         }
         return null;
     }
 
-    public int getSpeed() {
-        return speed;
+    public void setStatus(Person.STATUS status) {
+        this.status = status;
     }
 
-    public void setSpeed(int speed) {
-        this.speed = speed;
+    public String getNamePerson(){
+        return name;
     }
 }

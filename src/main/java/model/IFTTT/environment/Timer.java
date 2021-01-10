@@ -1,14 +1,10 @@
 package model.IFTTT.environment;
 
-public class Timer {
-    private int h, m, s, cs;
+public class Timer implements Sensor{
+    private int h, m, s;
 
-    public void increaseACentisecond() {
-        ++cs;
-        if (cs == 100) {
-            cs = 0;
-            ++s;
-        }
+    public void increaseASecond() {
+        ++s;
         if (s == 60) {
             s = 0;
             ++m;
@@ -31,11 +27,16 @@ public class Timer {
         return s;
     }
 
-    public int getCs() {
-        return cs;
+    public void reset() {
+        h=0; m=0; s=0;
     }
 
-    public void reset() {
-        h=0; m=0; s=0; cs=0;
+    @Override
+    public Object getValue() {
+        return new Integer(convertTimeToSeconds());
+    }
+
+    private int convertTimeToSeconds() {
+        return h*3600+m*60+s;
     }
 }

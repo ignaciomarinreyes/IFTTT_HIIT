@@ -3,6 +3,8 @@ package view;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import control.App;
 import model.IFTTT.environment.Timer;
 
 public class TimerFrame extends JFrame {
@@ -13,17 +15,19 @@ public class TimerFrame extends JFrame {
     private JButton stop;
     private JLabel valueTimer;
     private javax.swing.Timer t;
+    private PersonFrame personFrame;
 
-    public TimerFrame(Timer timer) {
+    public TimerFrame(Timer timer, PersonFrame personFrame) {
         super("IFTTT");
         this.timer = timer;
+        this.personFrame = personFrame;
         setContentPane(rootPane);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(800, 300);
         setSize(300,150);
         setResizable(false);
         setVisible(true);
-        t = new javax.swing.Timer(10, actions);
+        t = new javax.swing.Timer(1000, actions);
         start.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -32,6 +36,8 @@ public class TimerFrame extends JFrame {
                 start.setText("Resume");
                 pause.setEnabled(true);
                 stop.setEnabled(true);
+                App.setExecuting(true);
+                personFrame.disableStatusButton();
             }
         });
         pause.addActionListener(new ActionListener() {
@@ -40,6 +46,7 @@ public class TimerFrame extends JFrame {
                 t.stop();
                 start.setEnabled(true);
                 pause.setEnabled(false);
+                App.setExecuting(false);
             }
         });
         stop.addActionListener(new ActionListener() {
@@ -55,6 +62,9 @@ public class TimerFrame extends JFrame {
                 stop.setEnabled(false);
                 timer.reset();
                 updateLabel();
+                personFrame.stopPerson();
+                App.setExecuting(false);
+                personFrame.enableStatusButton();
             }
         });
     }
@@ -62,7 +72,7 @@ public class TimerFrame extends JFrame {
     private ActionListener actions = new ActionListener(){
         @Override
         public void actionPerformed(ActionEvent ae) {
-            timer.increaseACentisecond();
+            timer.increaseASecond();
             updateLabel();
         }
     };
@@ -70,8 +80,8 @@ public class TimerFrame extends JFrame {
     private void updateLabel() {
         String time = (timer.getH()<=9?"0":"")+timer.getH() +":"
                 + (timer.getM()<=9?"0":"")+timer.getM()+":"
-                + (timer.getS()<=9?"0":"")+timer.getS()+":"
-                + (timer.getCs()<=9?"0":"")+timer.getCs();
+                + (timer.getS()<=9?"0":"")+timer.getS();
         valueTimer.setText(time);
     }
+
 }
