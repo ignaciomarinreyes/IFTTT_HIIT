@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PersonFrame extends JFrame {
+    //private final LoggerPerson loggerPerson;
     private JPanel rootPane;
     private JTextField heartRate;
     private JLabel status;
@@ -18,6 +19,7 @@ public class PersonFrame extends JFrame {
 
     public PersonFrame(Person person) {
         super(person.getNamePerson());
+        //loggerPerson = new LoggerPerson(person);
         this.person = person;
         setContentPane(rootPane);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,6 +41,7 @@ public class PersonFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 person.setStatus(Person.STATUS.RUNNING);
                 status.setText(person.getStatus());
+                //loggerPerson.;
             }
         });
         runFast.addActionListener(new ActionListener() {

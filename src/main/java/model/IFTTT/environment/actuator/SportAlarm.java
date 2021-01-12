@@ -1,8 +1,9 @@
-package model.IFTTT.environment;
+package model.IFTTT.environment.actuator;
 
+import model.IFTTT.environment.Actuator;
 import model.Person;
 
-public class SportAlarm implements Actuator{
+public class SportAlarm implements Actuator {
 
     private final String name;
     private final Person person;

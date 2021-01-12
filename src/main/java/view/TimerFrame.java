@@ -5,10 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import control.App;
-import model.IFTTT.environment.Timer;
+import model.IFTTT.environment.sensor.Timer;
 
 public class TimerFrame extends JFrame {
-    private model.IFTTT.environment.Timer timer;
+    private Timer timer;
     private JPanel rootPane;
     private JButton start;
     private JButton pause;

@@ -1,6 +1,8 @@
-package model.IFTTT.environment;
+package model.IFTTT.environment.sensor;
 
-public class Timer implements Sensor{
+import model.IFTTT.environment.Sensor;
+
+public class Timer implements Sensor {
     private int h, m, s;
 
     public void increaseASecond() {
