@@ -23,8 +23,8 @@ public class LoggerTimer implements InvocationHandler {
         Logger logger_0 = LogManager.getLogger("logger_file");
         Logger logger_1 = LogManager.getLogger("stdout");
 
-        logger_0.info("El valor es: " + resultSensor);
-        logger_1.error("El valor es: " + resultSensor);
+        logger_0.info("El valor del cronómetro es: " + resultSensor);
+        logger_1.info("El valor del cronómetro es: " + resultSensor);
 
         return resultSensor;
     }

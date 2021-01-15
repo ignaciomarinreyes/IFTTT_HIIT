@@ -17,4 +17,8 @@ public class SportAlarm implements Actuator {
     public void actuate(Object status) {
         person.setStatus((Person.STATUS) status);
     }
+
+    public Person getPerson() {
+        return person;
+    }
 }

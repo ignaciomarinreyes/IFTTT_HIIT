@@ -27,13 +27,14 @@ public class App {
         Timer timer = new Timer();
         Sensor loggerTimer = LoggerFactory.getLoggerTimer(timer);
         Actuator sportAlarm = new SportAlarm("Garmin Forerunner 45 L/G", person);
+        Actuator loggerSportAlarm = LoggerFactory.getLoggerActuator(sportAlarm);
         rules = new Rule[4];
 
         rules[0] = new Rule(0, "Rule to stop", "Person stop if it is a stop time interval");
         Condition conditionBetweenEqual1 = new Condition(loggerTimer,
                 new IntervalInteger(150,179),
                 new IntegerRelationalOperator(OPERATOR.BETWEEN_EQUAL));
-        Action actionStop = new Action(sportAlarm, Person.STATUS.STOPPED);
+        Action actionStop = new Action(loggerSportAlarm, Person.STATUS.STOPPED);
         rules[0].addCondition(conditionBetweenEqual1);
         rules[0].addAction(actionStop);
 
@@ -47,7 +48,7 @@ public class App {
         Condition conditionBetweenEqual4 = new Condition(loggerTimer,
                 new IntervalInteger(120,149),
                 new IntegerRelationalOperator(OPERATOR.BETWEEN_EQUAL));
-        Action actionRun = new Action(sportAlarm, Person.STATUS.RUNNING);
+        Action actionRun = new Action(loggerSportAlarm, Person.STATUS.RUNNING);
         rules[1].addCondition(conditionBetweenEqual2);
         rules[1].addCondition(conditionBetweenEqual3);
         rules[1].addCondition(conditionBetweenEqual4);
@@ -57,7 +58,7 @@ public class App {
         Condition conditionBetweenEqual5 = new Condition(loggerTimer,
                 new IntervalInteger(30,59),
                 new IntegerRelationalOperator(OPERATOR.BETWEEN_EQUAL));
-        Action actionRunFast = new Action(sportAlarm, Person.STATUS.RUNNING_FAST);
+        Action actionRunFast = new Action(loggerSportAlarm, Person.STATUS.RUNNING_FAST);
         rules[2].addCondition(conditionBetweenEqual5);
         rules[2].addAction(actionRunFast);
 
@@ -65,7 +66,7 @@ public class App {
         Condition conditionBetweenEqual6 = new Condition(loggerTimer,
                 new IntervalInteger(90,119),
                 new IntegerRelationalOperator(OPERATOR.BETWEEN_EQUAL));
-        Action actionRunVeryFast = new Action(sportAlarm, Person.STATUS.RUNNING_VERY_FAST);
+        Action actionRunVeryFast = new Action(loggerSportAlarm, Person.STATUS.RUNNING_VERY_FAST);
         rules[3].addCondition(conditionBetweenEqual6);
         rules[3].addAction(actionRunVeryFast);
 
@@ -112,7 +113,7 @@ public class App {
         builder.add(firstLogger);
 
         /**/
-        RootLoggerComponentBuilder rootLooger = builder.newRootLogger(Level.ERROR);
+        RootLoggerComponentBuilder rootLooger = builder.newRootLogger(Level.INFO);
         rootLooger.add(builder.newAppenderRef("stdout"));
         builder.add(console);
 
