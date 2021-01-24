@@ -11,7 +11,7 @@ public class TestTimer_ {
     private Timer timer;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         timer = new Timer();
     }
 

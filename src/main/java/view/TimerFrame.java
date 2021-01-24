@@ -9,7 +9,7 @@ import model.IFTTT.environment.sensor.Timer;
 
 public class TimerFrame extends JFrame {
     private Timer timer;
-    private JPanel rootPanel;
+    private JPanel rootPane;
     private JButton start;
     private JButton pause;
     private JButton stop;
@@ -21,7 +21,7 @@ public class TimerFrame extends JFrame {
         super("IFTTT");
         this.timer = timer;
         this.personFrame = personFrame;
-        setContentPane(rootPanel);
+        setContentPane(rootPane);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocation(800, 300);
         setSize(300,150);

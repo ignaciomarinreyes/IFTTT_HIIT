@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PersonFrame extends JFrame {
+    
     private JPanel rootPane;
     private JTextField heartRate;
     private JLabel status;

@@ -23,7 +23,7 @@ public class LoggerSportAlarm implements InvocationHandler {
         Logger logger_1 = LogManager.getLogger("stdout");
         SportAlarm sportAlarm = (SportAlarm) actuator;
         logger_0.info("La persona está en el estado: " + sportAlarm.getPerson().getStatus());
-        logger_1.error("La persona está en el estado: " + sportAlarm.getPerson().getStatus());
+        logger_1.info("La persona está en el estado: " + sportAlarm.getPerson().getStatus());
         return null;
     }
 }
