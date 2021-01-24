@@ -9,7 +9,6 @@ import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 public class ITAction_ {
 
     private Person person;
@@ -23,8 +22,8 @@ public class ITAction_ {
     public void could_change_status_person_to_stopped() {
         Mockito.doReturn("Stopped").when(person).getStatus();
         SportAlarm sportAlarm = new SportAlarm("Ronnie Coleman", person);
-        Action actionRun = new Action(sportAlarm, Person.STATUS.STOPPED);
-        actionRun.actuate();
+        Action actionStop = new Action(sportAlarm, Person.STATUS.STOPPED);
+        actionStop.actuate();
         assertThat(sportAlarm.getPerson().getStatus()).isEqualTo("Stopped");
     }
 
@@ -41,8 +40,8 @@ public class ITAction_ {
     public void could_change_status_person_to_running_fast() {
         Mockito.doReturn("Running fast").when(person).getStatus();
         SportAlarm sportAlarm = new SportAlarm("Ronnie Coleman", person);
-        Action actionRun = new Action(sportAlarm, Person.STATUS.RUNNING_FAST);
-        actionRun.actuate();
+        Action actionRunFast = new Action(sportAlarm, Person.STATUS.RUNNING_FAST);
+        actionRunFast.actuate();
         assertThat(sportAlarm.getPerson().getStatus()).isEqualTo("Running fast");
     }
 
@@ -50,8 +49,8 @@ public class ITAction_ {
     public void could_change_status_person_to_running_very_fast() {
         Mockito.doReturn("Running very fast").when(person).getStatus();
         SportAlarm sportAlarm = new SportAlarm("Ronnie Coleman", person);
-        Action actionRun = new Action(sportAlarm, Person.STATUS.RUNNING_VERY_FAST);
-        actionRun.actuate();
+        Action actionRunVeryFast = new Action(sportAlarm, Person.STATUS.RUNNING_VERY_FAST);
+        actionRunVeryFast.actuate();
         assertThat(sportAlarm.getPerson().getStatus()).isEqualTo("Running very fast");
     }
 }

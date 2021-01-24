@@ -28,5 +28,4 @@ public class TestTimer_ {
         timer.reset();
         assertThat(timer.getValue()).isEqualTo(new Integer(0));
     }
-
 }

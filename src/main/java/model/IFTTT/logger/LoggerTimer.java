@@ -1,7 +1,6 @@
 package model.IFTTT.logger;
 
 import model.IFTTT.environment.Sensor;
-import model.IFTTT.environment.sensor.Timer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,13 +18,10 @@ public class LoggerTimer implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Integer resultSensor = (Integer) method.invoke(timer, args);
-        // Mostrar pantalla, guardar en fichero
         Logger logger_0 = LogManager.getLogger("logger_file");
         Logger logger_1 = LogManager.getLogger("stdout");
-
         logger_0.info("El valor del cronómetro es: " + resultSensor);
         logger_1.info("El valor del cronómetro es: " + resultSensor);
-
         return resultSensor;
     }
 }
