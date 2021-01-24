@@ -1,32 +1,57 @@
 package integration;
 
 import model.IFTTT.environment.actuator.SportAlarm;
+import model.IFTTT.system.Action;
 import model.Person;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.mock;
+
 
 public class ITAction_ {
 
-    private SportAlarm sportAlarmMock;
+    private Person person;
 
     @Before
-    public void setUp() throws Exception {
-        sportAlarmMock = mock(SportAlarm.class);
+    public void setUp() {
+        person = Mockito.mock(Person.class);
+    }
+
+    @Test
+    public void could_change_status_person_to_stopped() {
+        Mockito.doReturn("Stopped").when(person).getStatus();
+        SportAlarm sportAlarm = new SportAlarm("Ronnie Coleman", person);
+        Action actionRun = new Action(sportAlarm, Person.STATUS.STOPPED);
+        actionRun.actuate();
+        assertThat(sportAlarm.getPerson().getStatus()).isEqualTo("Stopped");
     }
 
     @Test
     public void could_change_status_person_to_running() {
-        //Mockito.when(sportAlarmMock.actuate(Person.STATUS.RUNNING)).then(sportAlarmMock.getPerson().setStatus(Person.STATUS.RUNNING));
-        //assertThat(sportAlarmMock.getPerson().getStatus()).isEqualTo(Person.STATUS.RUNNING);
+        Mockito.doReturn("Running").when(person).getStatus();
+        SportAlarm sportAlarm = new SportAlarm("Ronnie Coleman", person);
+        Action actionRun = new Action(sportAlarm, Person.STATUS.RUNNING);
+        actionRun.actuate();
+        assertThat(sportAlarm.getPerson().getStatus()).isEqualTo("Running");
+    }
+
+    @Test
+    public void could_change_status_person_to_running_fast() {
+        Mockito.doReturn("Running fast").when(person).getStatus();
+        SportAlarm sportAlarm = new SportAlarm("Ronnie Coleman", person);
+        Action actionRun = new Action(sportAlarm, Person.STATUS.RUNNING_FAST);
+        actionRun.actuate();
+        assertThat(sportAlarm.getPerson().getStatus()).isEqualTo("Running fast");
+    }
+
+    @Test
+    public void could_change_status_person_to_running_very_fast() {
+        Mockito.doReturn("Running very fast").when(person).getStatus();
+        SportAlarm sportAlarm = new SportAlarm("Ronnie Coleman", person);
+        Action actionRun = new Action(sportAlarm, Person.STATUS.RUNNING_VERY_FAST);
+        actionRun.actuate();
+        assertThat(sportAlarm.getPerson().getStatus()).isEqualTo("Running very fast");
     }
 }
-/*
-    doReturn(0).when(timerMock).getValue();
-        Condition conditionBetweenEqual = new Condition(timerMock,
-        new IntervalInteger(0, 10),
-        new IntegerRelationalOperator(OPERATOR.BETWEEN_EQUAL));
-        assertTrue(conditionBetweenEqual.evaluate());*/

@@ -14,7 +14,7 @@ public class ITCondition_ {
     private Timer timerMock;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         timerMock = mock(Timer.class);
     }
 

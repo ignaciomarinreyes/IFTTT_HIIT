@@ -6,7 +6,7 @@ import model.Person;
 public class SportAlarm implements Actuator {
 
     private final String name;
-    private final Person person;
+    private Person person;
 
     public SportAlarm(String name, Person person) {
         this.name = name;
@@ -21,4 +21,5 @@ public class SportAlarm implements Actuator {
     public Person getPerson() {
         return person;
     }
+
 }

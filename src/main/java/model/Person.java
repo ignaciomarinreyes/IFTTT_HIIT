@@ -84,4 +84,5 @@ public class Person extends Thread {
     public String getNamePerson(){
         return name;
     }
+
 }
